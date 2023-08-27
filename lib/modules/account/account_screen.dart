@@ -58,7 +58,7 @@ class _AccountScreenState extends State<AccountScreen> {
                       IconButton(
                         onPressed: (){},
                         icon: Icon(
-                          Icons.edit
+                          Icons.edit,
                       ),),
                     ],
                   ),
@@ -102,11 +102,18 @@ class _AccountScreenState extends State<AccountScreen> {
                     ),
                     Container(
                       padding: EdgeInsets.all(20.0),
-                      height: 150,
+                      height: 205,
                       color: Colors.grey.shade200,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          defaultTitleWidget(
+                            title: 'Language',
+                            leadingIcon: Icons.language_outlined,
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
                           defaultTitleWidget(
                             title: 'Settings',
                             leadingIcon: Icons.settings,
@@ -139,6 +146,7 @@ class _AccountScreenState extends State<AccountScreen> {
                       Text('Dark Mode'),
                       Spacer(),
                       Switch(
+                        activeColor: Colors.deepPurple[400],
                         value: isDarkModeEnabled,
                         onChanged: (value) {
                           setState(() {
