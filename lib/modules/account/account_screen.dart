@@ -21,8 +21,8 @@ class _AccountScreenState extends State<AccountScreen> {
             ),
             child: Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(
+                Container(
+                  padding: EdgeInsets.symmetric(
                     horizontal: 10.0
                   ),
                   child: Row(
@@ -52,9 +52,7 @@ class _AccountScreenState extends State<AccountScreen> {
                           ),
                         ],
                       ),
-                      SizedBox(
-                        width: 120,
-                      ),
+                      Spacer(),
                       IconButton(
                         onPressed: (){},
                         icon: Icon(
