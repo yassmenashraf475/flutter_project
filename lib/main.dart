@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_project/modules/account/account_screen.dart';
+import 'package:flutter_project/modules/details/details_screen.dart';
 import 'package:flutter_project/modules/splash/splash_screen.dart';
 
 void main() {
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: AccountScreen(),
+      home: DetailsScreen(),
     );
 
   }
