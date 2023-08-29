@@ -52,9 +52,7 @@ class _AccountScreenState extends State<AccountScreen> {
                           ),
                         ],
                       ),
-                      SizedBox(
-                        width: 120,
-                      ),
+                      Spacer(),
                       IconButton(
                         onPressed: (){},
                         icon: Icon(
