@@ -1,15 +1,32 @@
-import 'package:flutter/material.dart';
+// ignore_for_file: unused_import
 
-class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+import 'dart:async';
+import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
+import '../welcome/welcome.dart';
+
+class splash extends StatefulWidget {
+  const splash({super.key});
 
   @override
-  State<SplashScreen> createState() => _SplashScreenState();
+  State<splash> createState() => _splash();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _splash extends State<splash> {
+   void initState() {
+    super.initState();
+    Timer(
+        Duration(seconds: 8),
+        () => Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => welcome())));
+  }
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Center(
+        child: Lottie.asset('assets/images/SPLASHUPDATE.json'),
+      ),
+    );
   }
 }
