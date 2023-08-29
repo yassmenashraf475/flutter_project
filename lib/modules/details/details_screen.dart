@@ -12,10 +12,10 @@ class DetailsScreen extends StatefulWidget {
 class _DetailsScreenState extends State<DetailsScreen> {
   bool _isFavorite = false;
   List imageList=[
-    {"id" : 1, "imagepath" : 'assets/images/img/8ef0b109963cd6a0fc3287a3799553da.jpg'},
-    {"id" : 2, "imagepath" : 'assets/images/img/ABT173A4296520002BE948E127455464D7BE879E198719E28EB2BB080AE6D9D68C3.jpg'},
-    {"id" : 3, "imagepath" : 'assets/images/img/OIP (14).jpg'},
-    {"id" : 4, "imagepath" : 'assets/images/img/th (2).jpg'},
+    {"id" : 1, "imagepath" : 'assets/images/img/redirected-1000w-573329749.webp'},
+    {"id" : 2, "imagepath" : 'assets/images/img/1487561c446a5f5124c704334f42ebee.jpg'},
+    {"id" : 3, "imagepath" : 'assets/images/img/download (2).jpg'},
+    {"id" : 4, "imagepath" : 'assets/images/img/OIP (17).jpg'},
   ];
   final CarouselController carouselController=CarouselController();
   int currentIndex=0;
