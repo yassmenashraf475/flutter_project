@@ -51,6 +51,7 @@ class BottomNavBar extends StatelessWidget {
                     top: Radius.circular(90)), // Set the border radius here
 
                 child: BottomNavigationBar(
+                    type: BottomNavigationBarType.fixed,
                     currentIndex: selectedIndex,
                     onTap: onItemTapped,
                     selectedItemColor: const Color.fromARGB(

@@ -1,27 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'package:animated_background/animated_background.dart';
+import 'package:flutter_project/models/classes.dart';
 
 import '../../components/components.dart';
 import '../account/account_screen.dart';
 import '../favourite/favourite_screen.dart';
 
-class CustomText extends StatelessWidget {
-  final String text;
-
-  const CustomText({required this.text});
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      text,
-      style: const TextStyle(
-        fontSize: 14,
-        color: Color.fromARGB(155, 135, 92, 252),
-      ),
-    );
-  }
-}
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({super.key});
