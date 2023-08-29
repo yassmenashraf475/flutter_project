@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import '../details/details_screen.dart';
 
 class signin extends StatefulWidget {
   const signin({super.key});
@@ -10,12 +11,12 @@ class signin extends StatefulWidget {
 
 class _signinState extends State<signin> {
   final formkey = GlobalKey<FormState>();
-  bool obs=true;
+  bool obs = true;
   @override
   Widget build(BuildContext context) {
     double hei = MediaQuery.of(context).size.height;
     double wid = MediaQuery.of(context).size.width;
-    
+
     return Scaffold(
       backgroundColor: HexColor("F8FDFF"),
       body: SafeArea(
@@ -49,10 +50,10 @@ class _signinState extends State<signin> {
                   validator: (value) {
                     if (value!.isEmpty) {
                       return "Please enter email";
-                    }else if (!value.contains(RegExp( r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$'))){
-return "Please enter valid email";
-                    }
-                     else {
+                    } else if (!value.contains(RegExp(
+                        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$'))) {
+                      return "Please enter valid email";
+                    } else {
                       return null;
                     }
                   },
@@ -66,6 +67,7 @@ return "Please enter valid email";
                     ),
                     labelText: "Email",
                   ),
+                  keyboardType: TextInputType.emailAddress,
                 ),
               ),
               SizedBox(
@@ -84,25 +86,36 @@ return "Please enter valid email";
                     }
                   },
                   decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(hei / 30),
-                    ),
-                    prefixIcon: Icon(
-                      Icons.password,
-                      color: HexColor("73499B"),
-                    ),
-                    labelText: "Password",
-                    suffixIcon: IconButton(icon: Icon(obs?Icons.visibility:Icons.visibility_off),onPressed: () {
-                      setState(() {
-                        obs=!obs;
-                      });
-                    },)
-                  ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(hei / 30),
+                      ),
+                      prefixIcon: Icon(
+                        Icons.password,
+                        color: HexColor("73499B"),
+                      ),
+                      labelText: "Password",
+                      suffixIcon: IconButton(
+                        icon:
+                            Icon(obs ? Icons.visibility : Icons.visibility_off),
+                        onPressed: () {
+                          setState(() {
+                            obs = !obs;
+                          });
+                        },
+                      )),
                   obscureText: obs,
                 ),
-              )
-
-              
+              ),
+              SizedBox(height: hei/40,),
+              ElevatedButton(style: ElevatedButton.styleFrom(
+                backgroundColor: HexColor("73499B"),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+               minimumSize:Size(250, 50) ,
+              ),onPressed: () {
+                if(formkey.currentState!.validate()){
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => DetailsScreen(),));
+                }
+              }, child: Text("Sign In",style: TextStyle(color: Colors.white),))
             ]),
           ),
         ),
