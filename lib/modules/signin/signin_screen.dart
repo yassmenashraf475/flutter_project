@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_project/modules/signup/signup_screen.dart';
 import 'package:hexcolor/hexcolor.dart';
 import '../details/details_screen.dart';
 
@@ -105,8 +106,17 @@ class _signinState extends State<signin> {
                       )),
                   obscureText: obs,
                 ),
-              ),
-              SizedBox(height: hei/40,),
+              ),SizedBox(height: hei/50,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("Don't have an account? ",style: TextStyle(color: Colors.black),),
+                      TextButton(onPressed: () {
+                        Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => signup(),) );
+                      }, child: Text("Sign up")),
+                    ],
+                  ),
+                  SizedBox(height: hei/50,),
               ElevatedButton(style: ElevatedButton.styleFrom(
                 backgroundColor: HexColor("73499B"),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
