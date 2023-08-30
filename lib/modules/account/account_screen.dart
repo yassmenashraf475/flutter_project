@@ -12,27 +12,7 @@ class AccountScreen extends StatefulWidget {
 }
 
 class _AccountScreenState extends State<AccountScreen> {
-  int _selectedIndex = 0;
-  bool isIconTapped = false;
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-    switch (index) {
-      case 0:
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => MyHomePage()));
-        break;
-      case 1:
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => FavScreen()));
-        break;
-      case 2:
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => AccountScreen()));
-        break;
-    }
-  }
+
 
   bool isDarkModeEnabled = false;
   @override
@@ -192,10 +172,7 @@ class _AccountScreenState extends State<AccountScreen> {
             ),
           )
       ),
-      bottomNavigationBar: BottomNavBar(
-        selectedIndex: _selectedIndex,
-        onItemTapped: _onItemTapped,
-      ),
+
     );
   }
 }
