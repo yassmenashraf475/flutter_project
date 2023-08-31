@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:animated_background/animated_background.dart';
+import 'package:flutter_project/components/constants.dart';
 import 'package:flutter_project/models/classes.dart';
+import 'package:flutter_project/models/product.dart';
+import 'package:flutter_project/network/remote/dio_helper.dart';
 
 import '../../components/components.dart';
 import '../account/account_screen.dart';
@@ -24,13 +27,32 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
+  List<Product> Products = [];
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  Future<void> getData() async {
+    List articlesList = await DioHelper().getProducts(
+        path: ApiConstants.baseUrl + ApiConstants.newsEndpoint,
+        );
+    Products = Product.convertToProducts(articlesList);
+    setState(() {});
+  }
   bool isIconTapped = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 238, 225, 220),
-      body: AnimatedBackground(
+      body:Products.length == 0
+          ? const Center(
+          child: CircularProgressIndicator(
+           color: Colors.orange,
+         ),
+        )
+          : AnimatedBackground(
         behaviour: RandomParticleBehaviour(
           options: const ParticleOptions(
             spawnMaxRadius: 15,
