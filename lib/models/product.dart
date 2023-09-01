@@ -2,14 +2,14 @@ class Product {
   final int id;
   final String title;
   final String description;
-  final double price;
-  final double discountPercentage;
-  final double rating;
+  final int price;
+  final dynamic discountPercentage;
+  final dynamic rating;
   final int stock;
   final String brand;
   final String category;
   final String thumbnail;
-  final List<String> images;
+  final List images;
 
   Product(
       {required this.id,

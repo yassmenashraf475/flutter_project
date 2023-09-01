@@ -27,18 +27,17 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
-  List<Product> products = [];
+  List<Product> Products = [];
   @override
   void initState() {
     super.initState();
-    getData();
   }
 
   Future<void> getData() async {
     List articlesList = await DioHelper().getProducts(
         path: ApiConstants.baseUrl + ApiConstants.newsEndpoint,
         );
-    products = Product.convertToProducts(articlesList);
+    Products = Product.convertToProducts(articlesList);
     setState(() {});
   }
   bool isIconTapped = false;
@@ -47,10 +46,10 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 238, 225, 220),
-      body:products.length == 0
+      body:Products.length == 0
           ? const Center(
           child: CircularProgressIndicator(
-           color: Colors.purple,
+           color: Colors.orange,
          ),
         )
           : AnimatedBackground(
