@@ -73,6 +73,13 @@ flutter:
     - assets/images/login.png
     - assets/images/sign_up1.png
     - assets/images/SPLASHUPDATE.json
+    - assets/images/Rec1.png
+    - assets/images/Rec11.png
+    - assets/images/NEW11.json
+    - assets/images/LOGO.png
+    - assets/images/shop.png
+    - assets/images/login2line.png
+    - assets/images/icon.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
