@@ -31,14 +31,13 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    getData();
   }
 
   Future<void> getData() async {
-    List ProductsList = await DioHelper().getProducts(
+    List articlesList = await DioHelper().getProducts(
         path: ApiConstants.baseUrl + ApiConstants.newsEndpoint,
         );
-    Products = Product.convertToProducts(ProductsList);
+    Products = Product.convertToProducts(articlesList);
     setState(() {});
   }
   bool isIconTapped = false;
@@ -47,323 +46,313 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 238, 225, 220),
-      body:
-      // Products.length == 0
-      //     ? const Center(
-      //     child: CircularProgressIndicator(
-      //      color: Colors.deepPurple,
-      //    ),
-      //   )
-      //     :
-      ListView.builder(
-          itemCount: Products.length,
-          itemBuilder: (context, index) {
-            return AnimatedBackground(
-              behaviour: RandomParticleBehaviour(
-                options: const ParticleOptions(
-                  spawnMaxRadius: 15,
-                  spawnMinSpeed: 10.00,
-                  particleCount: 60,
-                  spawnMaxSpeed: 60,
-                  minOpacity: 0.3,
-                  spawnOpacity: 0.4,
-                  baseColor: Color.fromARGB(255, 122, 14, 143),
-                  image: Image(
-                      image: AssetImage('assets/images/img/bicon.png')),
-                ),
+      body:Products.length == 0
+          ? const Center(
+          child: CircularProgressIndicator(
+           color: Colors.orange,
+         ),
+        )
+          : AnimatedBackground(
+        behaviour: RandomParticleBehaviour(
+          options: const ParticleOptions(
+            spawnMaxRadius: 15,
+            spawnMinSpeed: 10.00,
+            particleCount: 60,
+            spawnMaxSpeed: 60,
+            minOpacity: 0.3,
+            spawnOpacity: 0.4,
+            baseColor: Color.fromARGB(255, 122, 14, 143),
+            image: Image(image: AssetImage('assets/images/img/bicon.png')),
+          ),
+        ),
+        vsync: this,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+             _searchTextFormField(),
+              const SizedBox(
+                height: 20,
               ),
-              vsync: this,
-              child: Column(
+              SingleChildScrollView(
+                scrollDirection: Axis.vertical,
 
-                  children: [
-                    _searchTextFormField(),
-                    const SizedBox(
-                      height: 20,
+                child: Column(children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(40),
+                    child: const Image(
+                      height: 160,
+                      image: AssetImage("assets/images/img/main.jpg"),
                     ),
-                    SingleChildScrollView(
-                      scrollDirection: Axis.vertical,
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  _listViewCategory(),
 
-                      child: Column(children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(40),
-                          child: const Image(
-                            height: 160,
-                            image: AssetImage("assets/images/img/main.jpg"),
+                  const SizedBox(height: 10),
+                  _listViewCategoryPhoto(),
+
+
+                  const SizedBox(height: 15),
+                  Padding(
+                    padding: const EdgeInsets.only(left:2.0,right: 25),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          color: const Color.fromARGB(255, 238, 225, 220),
+                          child: const Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(left: 32.0),
+                                child: Text(
+                                  "iPhones",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 20,
+                                    color: Color.fromARGB(255, 47, 2, 131),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                        const SizedBox(
-                          height: 20,
+                        //const SizedBox(width: ),
+
+                        const Text("See More",style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
+                          color: Color.fromRGBO(110, 8, 217, 1.0),
+
+                        ),)
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 25),
+                  _listViewProduct(),
+
+
+
+
+
+                  const SizedBox(height: 30),
+                  Padding(
+                    padding: const EdgeInsets.only(left:2.0,right: 25),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          color: const Color.fromARGB(255, 238, 225, 220),
+                          child: const Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(left: 32.0),
+                                child: Text(
+                                  "LapTops",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 20,
+                                    color: Color.fromARGB(255, 47, 2, 131),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                        _listViewCategory(),
+                        //const SizedBox(width: ),
 
-                        const SizedBox(height: 10),
-                        _listViewCategoryPhoto(),
+                        const Text("See More",style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
+                          color: Color.fromRGBO(110, 8, 217, 1.0),
+
+                        ),)
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 25),
 
 
-                        const SizedBox(height: 15),
-                        // Padding(
-                        //   padding: const EdgeInsets.only(left:2.0,right: 25),
-                        //   child: Row(
-                        //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        //     children: [
-                        //       Container(
-                        //         color: const Color.fromARGB(255, 238, 225, 220),
-                        //         child: const Row(
-                        //           mainAxisAlignment: MainAxisAlignment.start,
-                        //           children: [
-                        //             Padding(
-                        //               padding: EdgeInsets.only(left: 32.0),
-                        //               child: Text(
-                        //                 "iPhones",
-                        //                 style: TextStyle(
-                        //                   fontWeight: FontWeight.w400,
-                        //                   fontSize: 20,
-                        //                   color: Color.fromARGB(255, 47, 2, 131),
-                        //                 ),
-                        //               ),
-                        //             ),
-                        //           ],
-                        //         ),
-                        //       ),
-                        //       //const SizedBox(width: ),
-                        //
-                        //       const Text("See More",style: TextStyle(
-                        //         fontSize: 15,
-                        //         fontWeight: FontWeight.w500,
-                        //         color: Color.fromRGBO(110, 8, 217, 1.0),
-                        //
-                        //       ),)
-                        //     ],
-                        //   ),
-                        // ),
-                        // const SizedBox(height: 25),
-                        Text(
-                          Products[index].title,
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 2,
-                          style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18,
-                              color: Colors.black),
+
+
+
+
+
+                  _listViewProduct(),
+
+                  const SizedBox(height: 30),
+
+                  Padding(
+                    padding: const EdgeInsets.only(left:2.0,right: 25),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          color: const Color.fromARGB(255, 238, 225, 220),
+                          child: const Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(left: 32.0),
+                                child: Text(
+                                  "Perfumes",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 20,
+                                    color: Color.fromARGB(255, 47, 2, 131),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
+                        //const SizedBox(width: ),
 
-                        //
-                        //
-                        //
-                        //
-                        //
-                        // const SizedBox(height: 30),
-                        // Padding(
-                        //   padding: const EdgeInsets.only(left:2.0,right: 25),
-                        //   child: Row(
-                        //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        //     children: [
-                        //       Container(
-                        //         color: const Color.fromARGB(255, 238, 225, 220),
-                        //         child: const Row(
-                        //           mainAxisAlignment: MainAxisAlignment.start,
-                        //           children: [
-                        //             Padding(
-                        //               padding: EdgeInsets.only(left: 32.0),
-                        //               child: Text(
-                        //                 "LapTops",
-                        //                 style: TextStyle(
-                        //                   fontWeight: FontWeight.w400,
-                        //                   fontSize: 20,
-                        //                   color: Color.fromARGB(255, 47, 2, 131),
-                        //                 ),
-                        //               ),
-                        //             ),
-                        //           ],
-                        //         ),
-                        //       ),
-                        //       //const SizedBox(width: ),
-                        //
-                        //       const Text("See More",style: TextStyle(
-                        //         fontSize: 15,
-                        //         fontWeight: FontWeight.w500,
-                        //         color: Color.fromRGBO(110, 8, 217, 1.0),
-                        //
-                        //       ),)
-                        //     ],
-                        //   ),
-                        // ),
-                        // const SizedBox(height: 25),
+                        const Text("See More",style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
+                          color: Color.fromRGBO(110, 8, 217, 1.0),
+
+                        ),)
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 25),
+                  _listViewProduct(),
 
 
-                        // const SizedBox(height: 30),
-                        //
-                        // Padding(
-                        //   padding: const EdgeInsets.only(left:2.0,right: 25),
-                        //   child: Row(
-                        //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        //     children: [
-                        //       Container(
-                        //         color: const Color.fromARGB(255, 238, 225, 220),
-                        //         child: const Row(
-                        //           mainAxisAlignment: MainAxisAlignment.start,
-                        //           children: [
-                        //             Padding(
-                        //               padding: EdgeInsets.only(left: 32.0),
-                        //               child: Text(
-                        //                 "Perfumes",
-                        //                 style: TextStyle(
-                        //                   fontWeight: FontWeight.w400,
-                        //                   fontSize: 20,
-                        //                   color: Color.fromARGB(255, 47, 2, 131),
-                        //                 ),
-                        //               ),
-                        //             ),
-                        //           ],
-                        //         ),
-                        //       ),
-                        //       //const SizedBox(width: ),
-                        //
-                        //       const Text("See More",style: TextStyle(
-                        //         fontSize: 15,
-                        //         fontWeight: FontWeight.w500,
-                        //         color: Color.fromRGBO(110, 8, 217, 1.0),
-                        //
-                        //       ),)
-                        //     ],
-                        //   ),
-                        // ),
-                        // const SizedBox(height: 25),
-                        // _listViewProduct(),
-                        //
-                        //
-                        // const SizedBox(height: 30),
-                        //
-                        // Padding(
-                        //   padding: const EdgeInsets.only(left:2.0,right: 25),
-                        //   child: Row(
-                        //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        //     children: [
-                        //       Container(
-                        //         color: const Color.fromARGB(255, 238, 225, 220),
-                        //         child: const Row(
-                        //           mainAxisAlignment: MainAxisAlignment.start,
-                        //           children: [
-                        //             Padding(
-                        //               padding: EdgeInsets.only(left: 32.0),
-                        //               child: Text(
-                        //                 "Skin Care",
-                        //                 style: TextStyle(
-                        //                   fontWeight: FontWeight.w400,
-                        //                   fontSize: 20,
-                        //                   color: Color.fromARGB(255, 47, 2, 131),
-                        //                 ),
-                        //               ),
-                        //             ),
-                        //           ],
-                        //         ),
-                        //       ),
-                        //       //const SizedBox(width: ),
-                        //
-                        //       const Text("See More",style: TextStyle(
-                        //         fontSize: 15,
-                        //         fontWeight: FontWeight.w500,
-                        //         color: Color.fromRGBO(110, 8, 217, 1.0),
-                        //
-                        //       ),)
-                        //     ],
-                        //   ),
-                        // ),
-                        // const SizedBox(height: 25),
-                        // _listViewProduct(),
-                        //
-                        //
-                        // const SizedBox(height: 30),
-                        //
-                        // Padding(
-                        //   padding: const EdgeInsets.only(left:2.0,right: 25),
-                        //   child: Row(
-                        //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        //     children: [
-                        //       Container(
-                        //         color: const Color.fromARGB(255, 238, 225, 220),
-                        //         child: const Row(
-                        //           mainAxisAlignment: MainAxisAlignment.start,
-                        //           children: [
-                        //             Padding(
-                        //               padding: EdgeInsets.only(left: 32.0),
-                        //               child: Text(
-                        //                 "Food",
-                        //                 style: TextStyle(
-                        //                   fontWeight: FontWeight.w400,
-                        //                   fontSize: 20,
-                        //                   color: Color.fromARGB(255, 47, 2, 131),
-                        //                 ),
-                        //               ),
-                        //             ),
-                        //           ],
-                        //         ),
-                        //       ),
-                        //       //const SizedBox(width: ),
-                        //
-                        //       const Text("See More",style: TextStyle(
-                        //         fontSize: 15,
-                        //         fontWeight: FontWeight.w500,
-                        //         color: Color.fromRGBO(110, 8, 217, 1.0),
-                        //
-                        //       ),)
-                        //     ],
-                        //   ),
-                        // ),
-                        // const SizedBox(height: 25),
-                        // _listViewProduct(),
-                        //
-                        //
-                        // const SizedBox(height: 30),
-                        //
-                        // Padding(
-                        //   padding: const EdgeInsets.only(left:2.0,right: 25),
-                        //   child: Row(
-                        //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        //     children: [
-                        //       Container(
-                        //         color: const Color.fromARGB(255, 238, 225, 220),
-                        //         child: const Row(
-                        //           mainAxisAlignment: MainAxisAlignment.start,
-                        //           children: [
-                        //             Padding(
-                        //               padding: EdgeInsets.only(left: 32.0),
-                        //               child: Text(
-                        //                 "Accessories For Home",
-                        //                 style: TextStyle(
-                        //                   fontWeight: FontWeight.w400,
-                        //                   fontSize: 20,
-                        //                   color: Color.fromARGB(255, 47, 2, 131),
-                        //                 ),
-                        //               ),
-                        //             ),
-                        //           ],
-                        //         ),
-                        //       ),
-                        //       //const SizedBox(width: ),
-                        //
-                        //       const Text("See More",style: TextStyle(
-                        //         fontSize: 15,
-                        //         fontWeight: FontWeight.w500,
-                        //         color: Color.fromRGBO(110, 8, 217, 1.0),
-                        //
-                        //       ),)
-                        //     ],
-                        //   ),
-                        // ),
-                        // const SizedBox(height: 25),
-                        // _listViewProduct(),
+                  const SizedBox(height: 30),
+
+                  Padding(
+                    padding: const EdgeInsets.only(left:2.0,right: 25),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          color: const Color.fromARGB(255, 238, 225, 220),
+                          child: const Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(left: 32.0),
+                                child: Text(
+                                  "Skin Care",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 20,
+                                    color: Color.fromARGB(255, 47, 2, 131),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        //const SizedBox(width: ),
+
+                        const Text("See More",style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
+                          color: Color.fromRGBO(110, 8, 217, 1.0),
+
+                        ),)
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 25),
+                  _listViewProduct(),
 
 
-                      ]
-                      ),
-                    )
-                  ],
+                  const SizedBox(height: 30),
 
-              ),
+                  Padding(
+                    padding: const EdgeInsets.only(left:2.0,right: 25),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          color: const Color.fromARGB(255, 238, 225, 220),
+                          child: const Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(left: 32.0),
+                                child: Text(
+                                  "Food",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 20,
+                                    color: Color.fromARGB(255, 47, 2, 131),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        //const SizedBox(width: ),
 
-            );
-          }),
+                        const Text("See More",style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
+                          color: Color.fromRGBO(110, 8, 217, 1.0),
+
+                        ),)
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 25),
+                  _listViewProduct(),
+
+
+                  const SizedBox(height: 30),
+
+                  Padding(
+                    padding: const EdgeInsets.only(left:2.0,right: 25),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          color: const Color.fromARGB(255, 238, 225, 220),
+                          child: const Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(left: 32.0),
+                                child: Text(
+                                  "Accessories For Home",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 20,
+                                    color: Color.fromARGB(255, 47, 2, 131),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        //const SizedBox(width: ),
+
+                        const Text("See More",style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
+                          color: Color.fromRGBO(110, 8, 217, 1.0),
+
+                        ),)
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 25),
+                  _listViewProduct(),
+
+
+                ]
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
       // bottomNavigationBar: BottomNavBar(
       //   selectedIndex: _selectedIndex,
       //   onItemTapped: _onItemTapped,
@@ -525,197 +514,147 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
     );
   }
   Widget _listViewProduct() {
-    print("number of product ${Products.length}");
     return
+      Padding(
+        padding: const EdgeInsets.only(left: 8.0,right: 10),
+        child: Container(
+          height: 220,
+          width: 350,
+          color: Color.fromARGB(255, 238, 225, 220),
+          child: ListView.separated(
+            itemCount: widget.names.length,
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) {
+              return Container(
 
-       ListView.builder(
-        itemBuilder: (context, index) {
-          return Column(children: [
+                decoration: BoxDecoration(
+                  color:  Colors.white,
 
-            Padding(
-              padding: const EdgeInsets.only(left:2.0,right: 25),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    color: const Color.fromARGB(255, 238, 225, 220),
-                    child:  Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(left: 32.0),
-                          child: Text(
-                            Products[index].category,
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(
+                    color: Colors.white,
+                    width: 1,
+                  ),
+                ),
+
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 14.0),
+                      child: Container(
+                          height: 100,
+                          width: 100,
+                          decoration: const BoxDecoration(
+                            image: DecorationImage(image: AssetImage("assets/images/img/ipone.jpg"),
+                            ),
+                          ),
+                         ),
+                    ),
+                    const SizedBox(height: 5), // Add spacing between photo and text
+                    const Padding(
+                      padding: EdgeInsets.only(left:20.0),
+                      child: Text(
+                        "iPhone 13",
+                        style: TextStyle(
+                          fontSize:10 ,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.deepPurple,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+
+                    const SizedBox(height: 10),
+
+                    const Padding(
+                      padding: EdgeInsets.only(left:20.0,right: 9,bottom: 6),
+                      child: Row(
+                        mainAxisAlignment:MainAxisAlignment.spaceBetween ,
+                        children: [
+                          Text(
+                            "rate |",
+                            style: TextStyle(
+                              fontSize: 10,
+                              fontWeight: FontWeight.normal,
+                              color: Colors.grey,
+
+                            ),),
+                          const SizedBox(width: 1),
+                          // Add spacing between photo and text
+
+                          Text(
+                            "4.9",
+                            style: TextStyle(
+                              fontWeight: FontWeight.normal,
+                              color: Colors.grey,
+
+                            ),
+                          ),
+                          SizedBox(width: 30),
+
+                          Text(
+                            "1500\$",
                             style: TextStyle(
                               fontWeight: FontWeight.w400,
                               fontSize: 20,
-                              color: Color.fromARGB(255, 47, 2, 131),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  //const SizedBox(width: ),
-
-                  const Text("See More",style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w500,
-                    color: Color.fromRGBO(110, 8, 217, 1.0),
-
-                  ),)
-                ],
-              ),
-            ),
-
-            Padding(
-              padding: const EdgeInsets.only(left: 8.0,right: 10),
-              child: Container(
-                height: 220,
-                width: 350,
-                color: Color.fromARGB(255, 238, 225, 220),
-                child: ListView.separated(
-                  itemCount: widget.names.length,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) {
-                    return Container(
-
-                      decoration: BoxDecoration(
-                        color:  Colors.white,
-
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(
-                          color: Colors.white,
-                          width: 1,
-                        ),
-                      ),
-
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 14.0),
-                            child: Container(
-                              height: 100,
-                              width: 100,
-                              decoration: const BoxDecoration(
-                                image: DecorationImage(image: AssetImage("assets/images/img/ipone.jpg"),
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 5), // Add spacing between photo and text
-                          const Padding(
-                            padding: EdgeInsets.only(left:20.0),
-                            child: Text(
-                              "iPhone 13",
-                              style: TextStyle(
-                                fontSize:10 ,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.deepPurple,
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 10),
-
-                          const SizedBox(height: 10),
-
-                          const Padding(
-                            padding: EdgeInsets.only(left:20.0,right: 9,bottom: 6),
-                            child: Row(
-                              mainAxisAlignment:MainAxisAlignment.spaceBetween ,
-                              children: [
-                                Text(
-                                  "rate |",
-                                  style: TextStyle(
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.normal,
-                                    color: Colors.grey,
-
-                                  ),),
-                                const SizedBox(width: 1),
-                                // Add spacing between photo and text
-
-                                Text(
-                                  "4.9",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.normal,
-                                    color: Colors.grey,
-
-                                  ),
-                                ),
-                                SizedBox(width: 30),
-
-                                Text(
-                                  "1500\$",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 20,
-                                    color: Color.fromRGBO(30, 7, 72, 10),
-                                  ),
-                                ),
-                              ],
-                            ),
-
-                          ),
-                          const SizedBox(height: 15),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 20.0,bottom:10),
-                            child: Row(
-                              children: [
-                                GestureDetector(
-                                  onTap: () {
-                                    setState(() {
-                                      isIconTapped = !isIconTapped;
-                                    });
-                                  },
-                                  child: Icon(
-                                    Icons.favorite,
-                                    color: isIconTapped ? Colors.red : Colors.grey,
-                                  ),
-                                ),
-                                const SizedBox(width: 20),
-                                GestureDetector(
-                                  onTap: () {
-                                    // Navigate to another page here
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(builder: (context) => FavScreen()), // Replace with your destination page
-                                    );
-                                  },
-                                  child: const Text(
-                                    "Show More Details",
-                                    style: TextStyle(
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.w300,
-                                      color: Color.fromRGBO(156, 62, 243, 100),
-                                      decoration: TextDecoration.underline,
-                                    ),
-                                  ),
-
-                                ),
-                              ],
+                              color: Color.fromRGBO(30, 7, 72, 10),
                             ),
                           ),
                         ],
                       ),
-                    );
-                  },
-                  separatorBuilder: (BuildContext context, int index) =>
-                  const SizedBox(
-                    width: 20,
-                  ),
+
+                    ),
+                    const SizedBox(height: 15),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20.0,bottom:10),
+                      child: Row(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                isIconTapped = !isIconTapped;
+                              });
+                            },
+                            child: Icon(
+                              Icons.favorite,
+                              color: isIconTapped ? Colors.red : Colors.grey,
+                            ),
+                          ),
+                          const SizedBox(width: 20),
+                          GestureDetector(
+                            onTap: () {
+                              // Navigate to another page here
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => FavScreen()), // Replace with your destination page
+                              );
+                            },
+                            child: const Text(
+                              "Show More Details",
+                              style: TextStyle(
+                                fontSize: 10,
+                                fontWeight: FontWeight.w300,
+                                color: Color.fromRGBO(156, 62, 243, 100),
+                                decoration: TextDecoration.underline,
+                              ),
+                            ),
+
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
-              ),
+              );
+            },
+            separatorBuilder: (BuildContext context, int index) =>
+            const SizedBox(
+              width: 20,
             ),
-          ],);
-        },
-         itemCount: Products.length,
-
-
-
-
-       );
+          ),
+        ),
+      );
   }
 }

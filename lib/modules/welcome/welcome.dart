@@ -1,89 +1,95 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_project/modules/signin/signin_screen.dart';
 import 'package:flutter_project/modules/signup/signup_screen.dart';
-import 'package:hexcolor/hexcolor.dart';
+import 'package:lottie/lottie.dart';
 
 class welcome extends StatefulWidget {
   const welcome({super.key});
 
   @override
-  State<welcome> createState() => _welcomeState();
+  State<welcome> createState() => _welcomepage();
 }
 
-class _welcomeState extends State<welcome> {
+
+class _welcomepage extends State<welcome> {
   @override
   Widget build(BuildContext context) {
-    double hei = MediaQuery.of(context).size.height;
+       double hei = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: HexColor("F8FDFF"),
       body: SafeArea(
-        child: Center(
-          child: Column(
-            children: [
-              SizedBox(
-                height: hei / 10,
-              ),
-              Container(
-                  child: Text(
-                "Welcome To Mega",
-                style: TextStyle(
-                  fontSize: 40,
-                  color: Colors.purple,
-                  fontWeight: FontWeight.bold,
-                ),
-              )),
-              SizedBox(
-                height: hei / 10,
-              ),
-              Container(
-                  child: Image.asset("assets/images/after_splash_photo.png")),
-              SizedBox(
-                height: hei / 7,
-              ),
-              Container(
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: HexColor("73499B"),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(25)),
-                        minimumSize: Size(250, 50)),
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            Image.asset(
+              'assets/images/Rec11.png', // Replace with your image asset
+              fit: BoxFit.cover,
+            ),
+            Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    "Welcome To Mega",
+                    style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold,color: Colors.white),
+                  ),
+                  SizedBox(height: hei/70),
+                  Lottie.asset(
+                    'assets/images/NEW11.json', // Replace with your Lottie animation asset
+                    width: 500,
+                    height: 400,
+                     repeat: false
+                  ),
+                  SizedBox(height: hei/90),   
+                   //animation
+                  ElevatedButton(
                     onPressed: () {
-                      Navigator.pushReplacement(context, MaterialPageRoute(
-                        builder: (context) {
-                          return signin();
-                        },
-                      ));
+                     Navigator.pushReplacement(context, MaterialPageRoute(
+                          builder: (context) {
+                            return signin();
+                          },
+                        ));
                     },
-                    child: Text(
-                      "Sign In",
-                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    style: ElevatedButton.styleFrom(
+                      primary: Color(0xFF73499B),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(25.0), // Adjust the radius here
+                      ),
+                      minimumSize: Size(300, 50) // Button color
                     ),
-                  )),
-              SizedBox(
-                height: hei/30,
-              ),
-              Container(
-                child:ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: HexColor("D6C8E1"),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(25)),
-                        minimumSize: Size(250, 50)),
-                    onPressed: () {
-                      Navigator.pushReplacement(context, MaterialPageRoute(
-                        builder: (context) {
-                          return signup();
-                        },
-                      ));
-                    },
                     child: Text(
-                      "Sign Up",
-                      style: TextStyle(color: HexColor("73499B"), fontSize: 20),
+                      'Login',
+                      style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold,color: Colors.white),
                     ),
                   ),
-              )
-            ],
-          ),
+                  SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: () {
+                      // Sign Up button pressed
+                      Navigator.pushReplacement(context, MaterialPageRoute(
+                           builder: (context) {
+                             return signup();
+                           },
+                    ));
+                    },
+                    style: ElevatedButton.styleFrom(
+                      primary: Color(0xFFD6C8E1),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(25.0), // Adjust the radius here
+                      ),
+                      minimumSize: Size(300, 50) // Button color
+                    ),
+                    child: Text(
+                      'Sign Up',
+                      style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold,color: Color(0xFF73499B)),
+                      
+                    ),
+                  ),
+                  SizedBox(height: 20)
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );
