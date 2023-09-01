@@ -15,7 +15,6 @@ class _welcomepage extends State<welcome> {
   @override
   Widget build(BuildContext context) {
        double hei = MediaQuery.of(context).size.height;
-    double wid = MediaQuery.of(context).size.width;
     return Scaffold(
       body: SafeArea(
         child: Stack(

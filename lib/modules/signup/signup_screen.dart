@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter_project/modules/home/home_screen.dart';
 import 'package:flutter_project/modules/signin/signin_screen.dart';
 
 class signup extends StatefulWidget {
@@ -203,7 +204,7 @@ class SignUp extends State<signup> {
                         ElevatedButton(
                           onPressed: () {
                           if(formkey.currentState!.validate()){
-                            
+                          Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => MyHomePage(),) );
                           }
                         },
                           style: ElevatedButton.styleFrom(

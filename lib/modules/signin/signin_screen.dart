@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_project/modules/details/details_screen.dart';
 import 'package:flutter_project/modules/signup/signup_screen.dart';
 class signin extends StatefulWidget {
   const signin({super.key});
@@ -25,7 +26,7 @@ class login extends State<signin> {
                   children: [
                       SizedBox(height: hei/10),
                     Text(
-                      "Login",
+                      "Sign In",
                       style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold, color: Color(0xFF73499B)),
                     ),
                     SizedBox(height: hei/20),
@@ -124,7 +125,7 @@ class login extends State<signin> {
                     ElevatedButton(
                       onPressed: () {
                        if(formkey.currentState!.validate()){
-                  
+                  Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => DetailsScreen(),) );
                 }
                       },
                       style: ElevatedButton.styleFrom(
@@ -135,7 +136,7 @@ class login extends State<signin> {
                         minimumSize: Size(300, 50),
                       ),
                       child: Text(
-                        'Login',
+                        'Sign In',
                         style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
                       ),
                     ),
