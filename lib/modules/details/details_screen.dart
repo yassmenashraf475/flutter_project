@@ -1,22 +1,22 @@
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_project/models/product.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 class DetailsScreen extends StatefulWidget {
-  const DetailsScreen({super.key});
-
+  const DetailsScreen({super.key,required this.product});
+  //final int product_id;
+  final Product product;
   @override
   State<DetailsScreen> createState() => _DetailsScreenState();
 }
 
 class _DetailsScreenState extends State<DetailsScreen> {
+
+ // _DetailsScreenState({required this.product_id})
+
   bool _isFavorite = false;
-  List imageList=[
-    {"id" : 1, "imagepath" : 'assets/images/img/redirected-1000w-573329749.webp'},
-    {"id" : 2, "imagepath" : 'assets/images/img/1487561c446a5f5124c704334f42ebee.jpg'},
-    {"id" : 3, "imagepath" : 'assets/images/img/download (2).jpg'},
-    {"id" : 4, "imagepath" : 'assets/images/img/OIP (17).jpg'},
-  ];
+
   final CarouselController carouselController=CarouselController();
   int currentIndex=0;
 
@@ -35,7 +35,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
           ),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(40),
-            color: Colors.black,
+            color: Color(0xFF73499B),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -49,7 +49,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
               ),
               RichText(
                 text: TextSpan(
-                  text: 'Add To Card | \$1200',
+                  text: 'Add To Card | \$${widget.product.price}',
                   style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold
@@ -70,14 +70,14 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         print(currentIndex);
                       },
                       child: CarouselSlider(
-                          items: imageList.map(
-                                  (item) => Image.asset(
-                                item['imagepath'],
-                                fit: BoxFit.cover,
-                                width: double.infinity,
-                              )
-                          ).toList(),
-                          carouselController:carouselController,
+                          items: widget.product.images.map((imagePath) {
+                            return Image.network(
+                              imagePath,
+                              fit: BoxFit.cover,
+                              width: double.infinity,
+                            );
+                          }).toList(),
+                         // carouselController:carouselController,
                           options:CarouselOptions(
                             scrollPhysics:  const BouncingScrollPhysics(),
                             autoPlay: true,
@@ -141,7 +141,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         children: [
                           Expanded(
                             child: Text(
-                              'Non-Alcoholic Concentrated Perfume Oil',
+                              '${widget.product.title}',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 25,
@@ -169,11 +169,11 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           Container(
                             padding: EdgeInsets.all(5),
                             decoration: BoxDecoration(
-                                color: Colors.grey[400],
+                                color: Color(0xFFD6C8E1),
                                 borderRadius: BorderRadius.circular(20)
                             ),
                             child: Text(
-                              '144 items left',
+                              '${widget.product.stock} items left',
                               style: TextStyle(
                                   fontSize: 13,
                                   fontWeight: FontWeight.w400
@@ -201,7 +201,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           ),
                           RichText(
                               text: TextSpan(
-                                  text: '3.0',
+                                  text: '${widget.product.rating}',
                                   style: TextStyle(
                                     fontSize: 13,
                                   ).copyWith(color: Colors.grey)
@@ -237,7 +237,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         height: 10,
                       ),
                       Text(
-                        'Genuine  Al-Rehab spray perfume from UAE/Saudi Arabia/Yemen High Quality',
+                        '${widget.product.description}',
                         style: TextStyle(
                           fontSize: 14,
                         ),
@@ -248,14 +248,14 @@ class _DetailsScreenState extends State<DetailsScreen> {
                       Row(
                         children: [
                           Text(
-                            'Brand:',
+                            'Brand: ',
                             style: TextStyle(
                                 fontSize: 15,
                                 fontWeight: FontWeight.w500
                             ),
                           ),
                           Text(
-                            ' Al Munakh',
+                            '${widget.product.brand}',
                             style: TextStyle(
                                 fontSize: 13,
                                 color: Colors.grey[900]
@@ -276,7 +276,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                             ),
                           ),
                           Text(
-                            ' fragrances',
+                            ' ${widget.product.category}',
                             style: TextStyle(
                                 fontSize: 13,
                                 color: Colors.grey[900]
