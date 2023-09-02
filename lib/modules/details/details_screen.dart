@@ -7,6 +7,7 @@ class DetailsScreen extends StatefulWidget {
   const DetailsScreen({super.key,required this.product});
   //final int product_id;
   final Product product;
+
   @override
   State<DetailsScreen> createState() => _DetailsScreenState();
 }
@@ -14,12 +15,27 @@ class DetailsScreen extends StatefulWidget {
 class _DetailsScreenState extends State<DetailsScreen> {
 
  // _DetailsScreenState({required this.product_id})
+  double initialRating=0.0;
+  late int fullStars;
+  late double fractionalPart;
 
   bool _isFavorite = false;
 
   final CarouselController carouselController=CarouselController();
   int currentIndex=0;
 
+  @override
+  void initState() {
+    super.initState();
+    if (widget.product.rating is int) {
+      initialRating = widget.product.rating.toDouble();
+    } else if (widget.product.rating is double) {
+      initialRating = widget.product.rating;
+    }
+    fullStars = initialRating.floor(); // Get the integer part
+    fractionalPart = initialRating - fullStars; // Get the fractional part
+
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,9 +67,42 @@ class _DetailsScreenState extends State<DetailsScreen> {
                 text: TextSpan(
                   text: 'Add To Card | \$${widget.product.price}',
                   style: TextStyle(
+                      fontFamily: "fonttry",
                       fontSize: 18,
                       fontWeight: FontWeight.bold
                   ).copyWith(color: Colors.white),
+                ),
+              ),
+              SizedBox(
+                width: 5,
+              ),
+              Container(
+                padding: EdgeInsets.all(4),
+                decoration: BoxDecoration(
+                    color: Color(0xFFD6C8E1),
+                    borderRadius: BorderRadius.circular(15)
+                ),
+                child: Row(
+                  children: [
+                    Text(
+                      '${widget.product.discountPercentage}%',
+                      maxLines: 2,
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.red, // You can customize the color
+                      ),
+                    ),
+                    Text(
+                      'OFF',
+                      maxLines: 2,
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.red, // You can customize the color
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
@@ -91,39 +140,35 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           )
                       ),
                     ),
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: Container(
+                        padding: EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.white.withOpacity(0.11),
+                              spreadRadius: 0.0,
+                              blurRadius: 4,
+                              offset: Offset(0, 5),
+                            )
+                          ],
+                        ),
+                        child: IconButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          icon: Icon(
+                            Icons.chevron_left_outlined,
+                            color: Color(0xFF73499B),
+                            size: 30,
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
-                // Stack(
-                //   alignment: Alignment.topLeft,
-                //   children: [
-                //     ClipRRect(
-                //       borderRadius: BorderRadius.circular(24),
-                //       child:
-                //     ),
-                //     Container(
-                //       padding: EdgeInsets.all(10),
-                //       decoration: BoxDecoration(
-                //         shape: BoxShape.circle,
-                //         boxShadow: [
-                //           BoxShadow(
-                //               color: Colors.white.withOpacity(0.11),
-                //             spreadRadius: 0.0,
-                //             blurRadius: 4,
-                //             offset: Offset(0, 5)
-                //           )
-                //         ]
-                //       ),
-                //       child: IconButton(
-                //         onPressed: (){},
-                //         icon: Icon(
-                //           Icons.chevron_left_outlined,
-                //           color: Colors.white,
-                //           size: 30,
-                //         ),
-                //       ),
-                //     ),
-                //   ],
-                // ),
                 SizedBox(
                   height: 30,
                 ),
@@ -143,6 +188,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                             child: Text(
                               '${widget.product.title}',
                               style: TextStyle(
+                                fontFamily: "fonttry",
                                 fontWeight: FontWeight.bold,
                                 fontSize: 25,
                               ),
@@ -184,14 +230,32 @@ class _DetailsScreenState extends State<DetailsScreen> {
                             width: 15,
                           ),
                           RatingBar.builder(
-                            itemBuilder: (context, index) => Icon(
-                              Icons.star,
-                              color: Colors.yellow,
-                            ),
-                            onRatingUpdate: (rating) {},
+                            onRatingUpdate: (rating) {
+                             // print('New Rating: $rating');
+                            },
                             itemSize: 15,
                             minRating: 1,
-                            initialRating: 3,
+                            initialRating: initialRating,
+                            itemBuilder: (context, index) { if (index < fullStars) {
+                              // Full yellow star
+                              return Icon(
+                                Icons.star,
+                                color: Colors.yellow,
+                              );
+                            } else if (index == fullStars && fractionalPart > 0.0) {
+                              // Partial yellow star
+                              return Icon(
+                                Icons.star_half,
+                                color: Colors.yellow,
+                              );
+                            } else {
+                              // Empty star
+                              return Icon(
+                                Icons.star_border,
+                                color: Colors.yellow,
+                              );
+                            }
+                            },
                             itemCount: 5,
                             direction: Axis.horizontal,
                             itemPadding: EdgeInsets.all(0.5),
@@ -229,6 +293,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                       Text(
                         'Description',
                         style: TextStyle(
+                          fontFamily: "fonttry",
                           fontWeight: FontWeight.bold,
                           fontSize: 18,
                         ),
@@ -250,6 +315,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           Text(
                             'Brand: ',
                             style: TextStyle(
+                                fontFamily: "fonttry",
                                 fontSize: 15,
                                 fontWeight: FontWeight.w500
                             ),
@@ -271,6 +337,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           Text(
                             'Category:',
                             style: TextStyle(
+                                fontFamily: "fonttry",
                                 fontSize: 15,
                                 fontWeight: FontWeight.w500
                             ),
