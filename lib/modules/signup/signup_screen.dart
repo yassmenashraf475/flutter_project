@@ -2,6 +2,7 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_project/layout/home_layout.dart';
 import 'package:flutter_project/modules/home/home_screen.dart';
 import 'package:flutter_project/modules/signin/signin_screen.dart';
 import 'package:flutter_project/network/remote/firebasehelper.dart';
@@ -245,7 +246,7 @@ class SignUp extends State<signup> {
                             Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => MyHomePage(),
+                                  builder: (context) => signin(),
                                 ));
                           },
                           child: Text("Sign in")),
@@ -281,7 +282,7 @@ class SignUp extends State<signup> {
             Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => signin(),
+                  builder: (context) => HomeLayout(),
                 ));
           } else if (value is String) {
             Navigator.of(context).pop();

@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_project/layout/home_layout.dart';
 import 'package:flutter_project/modules/home/home_screen.dart';
 import 'package:flutter_project/modules/signup/signup_screen.dart';
 import 'package:flutter_project/network/remote/firebasehelper.dart';
@@ -177,7 +178,7 @@ class login extends State<signin> {
             Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => MyHomePage(),
+                  builder: (context) => HomeLayout(),
                 ));
           } else if (value is String) {
             Navigator.of(context).pop();
