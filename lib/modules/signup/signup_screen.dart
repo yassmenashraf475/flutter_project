@@ -25,6 +25,7 @@ class SignUp extends State<signup> {
   Widget build(BuildContext context) {
     double hei = MediaQuery.of(context).size.height;
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Form(

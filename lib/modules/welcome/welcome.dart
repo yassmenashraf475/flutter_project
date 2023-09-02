@@ -60,7 +60,7 @@ class _welcomepage extends State<welcome> {
                         minimumSize: Size(300, 50) // Button color
                         ),
                     child: Text(
-                      'Login',
+                      'Sign In',
                       style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
