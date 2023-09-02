@@ -136,8 +136,134 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                                   ),
                                 ),
                             const SizedBox(height: 25),
+                                // Container(
+                                //   height: 215,
+                                //   width: 350,
+                                //   //color: Color.fromARGB(255, 238, 225, 220),
+                                //   child: ListView.separated(
+                                //     itemCount: categoryProducts.length,
+                                //     scrollDirection: Axis.horizontal,
+                                //     itemBuilder: (context, index) {
+                                //       Product product = categoryProducts[index];
+                                //       return Container(
+                                //         decoration: BoxDecoration(
+                                //          color: Colors.white,
+                                //           borderRadius: BorderRadius.circular(15),
+                                //           border: Border.all(
+                                //             color: Colors.white,
+                                //             width: 1,
+                                //           ),
+                                //         ),
+                                //
+                                //         child: Column(
+                                //           mainAxisAlignment: MainAxisAlignment.start,
+                                //           crossAxisAlignment: CrossAxisAlignment.start,
+                                //           children: [
+                                //             Padding(
+                                //               padding: const EdgeInsets.symmetric(
+                                //                 horizontal: 14.0
+                                //               ),
+                                //               child: Container(
+                                //                 height: 100,
+                                //                 width: 120,
+                                //                 child: Image.network(
+                                //                   product.thumbnail,
+                                //                   fit: BoxFit.fitWidth,
+                                //                 ),
+                                //               ),
+                                //             ),
+                                //             const SizedBox(height: 5), // Add spacing between photo and text
+                                //             Padding(
+                                //               padding: EdgeInsets.only(left:20.0),
+                                //               child: Text(
+                                //                 "${product.title}",
+                                //                 style: TextStyle(
+                                //                   fontSize:10 ,
+                                //                   fontWeight: FontWeight.w400,
+                                //                   color: Colors.deepPurple,
+                                //                 ),
+                                //               ),
+                                //             ),
+                                //             const SizedBox(height: 10),
+                                //
+                                //             const SizedBox(height: 10),
+                                //
+                                //             Padding(
+                                //               padding: EdgeInsets.only(left:20.0,right: 9,bottom: 6),
+                                //               child: Row(
+                                //                 mainAxisAlignment:MainAxisAlignment.spaceBetween ,
+                                //                 children: [
+                                //                   Text(
+                                //                     "rate |",
+                                //                     style: TextStyle(
+                                //                       fontSize: 10,
+                                //                       fontWeight: FontWeight.normal,
+                                //                       color: Colors.grey,
+                                //
+                                //                     ),),
+                                //                   const SizedBox(width: 1),
+                                //                   // Add spacing between photo and text
+                                //
+                                //                   Text(
+                                //                     "${product.rating}",
+                                //                     style: TextStyle(
+                                //                       fontWeight: FontWeight.normal,
+                                //                       color: Colors.grey,
+                                //
+                                //                     ),
+                                //                   ),
+                                //                   SizedBox(width: 30),
+                                //
+                                //                   Text(
+                                //                     "\$${product.price}",
+                                //                     style: TextStyle(
+                                //                       fontWeight: FontWeight.w400,
+                                //                       fontSize: 20,
+                                //                       color: Color.fromRGBO(30, 7, 72, 10),
+                                //                     ),
+                                //                   ),
+                                //                 ],
+                                //               ),
+                                //
+                                //             ),
+                                //             const SizedBox(height: 15),
+                                //             Padding(
+                                //               padding: const EdgeInsets.only(left: 55.0),
+                                //               child: GestureDetector(
+                                //                 onTap: () {
+                                //                   // Navigate to another page here
+                                //                   Navigator.push(
+                                //                     context,
+                                //                     MaterialPageRoute(builder: (context) => DetailsScreen(
+                                //                       product: product,
+                                //                     )
+                                //                     ), // Replace with your destination page
+                                //                   );
+                                //                 },
+                                //                 child: const Text(
+                                //                   "Show More Details",
+                                //                   textAlign: TextAlign.center,
+                                //                   style: TextStyle(
+                                //                     fontSize: 10,
+                                //                     fontWeight: FontWeight.w500,
+                                //                     color: Color.fromRGBO(156, 62, 243, 100),
+                                //                     decoration: TextDecoration.underline,
+                                //                   ),
+                                //                 ),
+                                //               ),
+                                //             ),
+                                //           ],
+                                //         ),
+                                //       );
+                                //     },
+                                //     separatorBuilder: (BuildContext context, int index) =>
+                                //     const SizedBox(
+                                //       width: 20,
+                                //     ),
+                                //   ),
+                                // ),
                                 Container(
-                                  height: 215,
+                                  height: 250,
                                   width: 350,
                                   //color: Color.fromARGB(255, 238, 225, 220),
                                   child: ListView.separated(
@@ -146,26 +272,27 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                                     itemBuilder: (context, index) {
                                       Product product = categoryProducts[index];
                                       return Container(
+                                        padding: EdgeInsets.all(8),
+                                        width: 160, // Set a fixed width here
                                         decoration: BoxDecoration(
-                                         color: Colors.white,
+                                          color: Colors.white,
                                           borderRadius: BorderRadius.circular(15),
                                           border: Border.all(
                                             color: Colors.white,
                                             width: 1,
                                           ),
                                         ),
-
                                         child: Column(
                                           mainAxisAlignment: MainAxisAlignment.start,
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
                                             Padding(
                                               padding: const EdgeInsets.symmetric(
-                                                horizontal: 14.0
+                                                horizontal: 5.0,
                                               ),
                                               child: Container(
                                                 height: 100,
-                                                width: 120,
+                                                width: 130,
                                                 child: Image.network(
                                                   product.thumbnail,
                                                   fit: BoxFit.fitWidth,
@@ -174,59 +301,54 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                                             ),
                                             const SizedBox(height: 5), // Add spacing between photo and text
                                             Padding(
-                                              padding: EdgeInsets.only(left:20.0),
+                                              padding: EdgeInsets.only(left: 20.0),
                                               child: Text(
+                                                maxLines: 1,
+                                                overflow: TextOverflow.ellipsis,
                                                 "${product.title}",
                                                 style: TextStyle(
-                                                  fontSize:10 ,
-                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 15,
+                                                  fontFamily: "sonttry",
+                                                  fontWeight: FontWeight.w500,
                                                   color: Colors.deepPurple,
                                                 ),
                                               ),
                                             ),
                                             const SizedBox(height: 10),
-
                                             const SizedBox(height: 10),
-
-                                            Padding(
-                                              padding: EdgeInsets.only(left:20.0,right: 9,bottom: 6),
-                                              child: Row(
-                                                mainAxisAlignment:MainAxisAlignment.spaceBetween ,
-                                                children: [
-                                                  Text(
-                                                    "rate |",
-                                                    style: TextStyle(
-                                                      fontSize: 10,
-                                                      fontWeight: FontWeight.normal,
-                                                      color: Colors.grey,
-
-                                                    ),),
-                                                  const SizedBox(width: 1),
-                                                  // Add spacing between photo and text
-
-                                                  Text(
-                                                    "${product.rating}",
-                                                    style: TextStyle(
-                                                      fontWeight: FontWeight.normal,
-                                                      color: Colors.grey,
-
-                                                    ),
+                                            Row(
+                                              children: [
+                                                Text(
+                                                  "rate |",
+                                                  style: TextStyle(
+                                                    fontSize: 13,
+                                                    fontWeight: FontWeight.normal,
+                                                    color: Colors.grey,
                                                   ),
-                                                  SizedBox(width: 30),
-
-                                                  Text(
-                                                    "${product.price}\$",
-                                                    style: TextStyle(
-                                                      fontWeight: FontWeight.w400,
-                                                      fontSize: 20,
-                                                      color: Color.fromRGBO(30, 7, 72, 10),
-                                                    ),
+                                                ),
+                                                const SizedBox(width: 1),
+                                                // Add spacing between photo and text
+                                                Text(
+                                                  "${product.rating}",
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.normal,
+                                                    color: Colors.grey,
                                                   ),
-                                                ],
-                                              ),
-
+                                                ),
+                                              ],
                                             ),
-                                            const SizedBox(height: 15),
+                                            SizedBox(height: 5),
+                                            Expanded(
+                                              child: Text(
+                                                "Price: \$${product.price}",
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 20,
+                                                  color: Color.fromRGBO(30, 7, 72, 10),
+                                                ),
+                                              ),
+                                            ),
+                                           // const SizedBox(height: 5),
                                             Padding(
                                               padding: const EdgeInsets.only(left: 55.0),
                                               child: GestureDetector(
@@ -234,11 +356,12 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                                                   // Navigate to another page here
                                                   Navigator.push(
                                                     context,
-                                                    MaterialPageRoute(builder: (context) => DetailsScreen(
-                                                      product: product,
-                                                    )
-                                                    ), // Replace with your destination page
-                                                  );
+                                                    MaterialPageRoute(
+                                                      builder: (context) => DetailsScreen(
+                                                        product: product,
+                                                      ),
+                                                    ),
+                                                  ); // Replace with your destination page
                                                 },
                                                 child: const Text(
                                                   "Show More Details",
@@ -256,8 +379,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                                         ),
                                       );
                                     },
-                                    separatorBuilder: (BuildContext context, int index) =>
-                                    const SizedBox(
+                                    separatorBuilder: (BuildContext context, int index) => const SizedBox(
                                       width: 20,
                                     ),
                                   ),
