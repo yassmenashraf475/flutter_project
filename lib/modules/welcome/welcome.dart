@@ -10,11 +10,10 @@ class welcome extends StatefulWidget {
   State<welcome> createState() => _welcomepage();
 }
 
-
 class _welcomepage extends State<welcome> {
   @override
   Widget build(BuildContext context) {
-       double hei = MediaQuery.of(context).size.height;
+    double hei = MediaQuery.of(context).size.height;
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -31,35 +30,41 @@ class _welcomepage extends State<welcome> {
                 children: [
                   Text(
                     "Welcome To Mega",
-                    style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold,color: Colors.white),
+                    style: TextStyle(
+                        fontSize: 35,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
                   ),
-                  SizedBox(height: hei/70),
+                  SizedBox(height: hei / 70),
                   Lottie.asset(
-                    'assets/images/NEW11.json', // Replace with your Lottie animation asset
-                    width: 500,
-                    height: 400,
-                     repeat: false
-                  ),
-                  SizedBox(height: hei/90),   
-                   //animation
+                      'assets/images/NEW11.json', // Replace with your Lottie animation asset
+                      width: 500,
+                      height: 400,
+                      repeat: false),
+                  SizedBox(height: hei / 90),
+                  //animation
                   ElevatedButton(
                     onPressed: () {
-                     Navigator.pushReplacement(context, MaterialPageRoute(
-                          builder: (context) {
-                            return signin();
-                          },
-                        ));
+                      Navigator.pushReplacement(context, MaterialPageRoute(
+                        builder: (context) {
+                          return signin();
+                        },
+                      ));
                     },
                     style: ElevatedButton.styleFrom(
-                      primary: Color(0xFF73499B),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(25.0), // Adjust the radius here
-                      ),
-                      minimumSize: Size(300, 50) // Button color
-                    ),
+                        primary: Color(0xFF73499B),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(
+                              25.0), // Adjust the radius here
+                        ),
+                        minimumSize: Size(300, 50) // Button color
+                        ),
                     child: Text(
                       'Login',
-                      style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold,color: Colors.white),
+                      style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
                     ),
                   ),
                   SizedBox(height: 20),
@@ -67,22 +72,25 @@ class _welcomepage extends State<welcome> {
                     onPressed: () {
                       // Sign Up button pressed
                       Navigator.pushReplacement(context, MaterialPageRoute(
-                           builder: (context) {
-                             return signup();
-                           },
-                    ));
+                        builder: (context) {
+                          return signup();
+                        },
+                      ));
                     },
                     style: ElevatedButton.styleFrom(
-                      primary: Color(0xFFD6C8E1),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(25.0), // Adjust the radius here
-                      ),
-                      minimumSize: Size(300, 50) // Button color
-                    ),
+                        primary: Color(0xFFD6C8E1),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(
+                              25.0), // Adjust the radius here
+                        ),
+                        minimumSize: Size(300, 50) // Button color
+                        ),
                     child: Text(
                       'Sign Up',
-                      style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold,color: Color(0xFF73499B)),
-                      
+                      style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF73499B)),
                     ),
                   ),
                   SizedBox(height: 20)

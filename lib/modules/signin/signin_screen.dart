@@ -1,7 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_project/layout/home_layout.dart';
-import 'package:flutter_project/modules/details/details_screen.dart';
+import 'package:flutter_project/modules/home/home_screen.dart';
 import 'package:flutter_project/modules/signup/signup_screen.dart';
+import 'package:flutter_project/network/remote/firebasehelper.dart';
 class signin extends StatefulWidget {
   const signin({super.key});
 
@@ -27,7 +28,7 @@ class login extends State<signin> {
                   children: [
                       SizedBox(height: hei/10),
                     Text(
-                      "Sign In",
+                      "Login",
                       style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold, color: Color(0xFF73499B)),
                     ),
                     SizedBox(height: hei/20),
@@ -125,9 +126,7 @@ class login extends State<signin> {
                     SizedBox(height: hei/40),
                     ElevatedButton(
                       onPressed: () {
-                       if(formkey.currentState!.validate()){
-                  Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => HomeLayout(),) );
-                }
+                       LoginAction();
                       },
                       style: ElevatedButton.styleFrom(
                         primary: Color(0xFF73499B),
@@ -137,7 +136,7 @@ class login extends State<signin> {
                         minimumSize: Size(300, 50),
                       ),
                       child: Text(
-                        'Sign In',
+                        'Login',
                         style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
                       ),
                     ),
@@ -156,5 +155,38 @@ class login extends State<signin> {
         ),),
       ))
     );
+  }
+  
+ void LoginAction() async {
+    if (formkey.currentState!.validate()) {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return Center(
+            child: CircularProgressIndicator(color: Color(0xFF73499B)),
+          );
+        },
+      );
+      FireBaseHelper()
+          .signIn(
+              emailController.text.toString(),
+              passwordController.text.toString())
+          .then(
+        (value) {
+          if (value is User) {
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => MyHomePage(),
+                ));
+          } else if (value is String) {
+            Navigator.of(context).pop();
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text(value),
+            ));
+          }
+        },
+      );
+    }
   }
 }
