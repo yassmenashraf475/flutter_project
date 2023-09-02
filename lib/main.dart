@@ -5,6 +5,8 @@ import 'package:flutter_project/layout/home_layout.dart';
 import 'package:flutter_project/modules/account/account_screen.dart';
 import 'package:flutter_project/modules/details/details_screen.dart';
 import 'package:flutter_project/modules/home/home_screen.dart';
+import 'package:flutter_project/modules/signin/signin_screen.dart';
+import 'package:flutter_project/modules/signup/signup_screen.dart';
 import 'package:flutter_project/modules/splash/splash_screen.dart';
 
 void main() async {
@@ -27,7 +29,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: splash(),
+      home: HomeLayout(),
     );
 
   }

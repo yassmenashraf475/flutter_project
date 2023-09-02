@@ -38,7 +38,8 @@ class _HomeLayoutState extends State<HomeLayout> {
               255, 212, 188, 228),
           selectedFontSize: 14,
           unselectedFontSize: 14,
-          backgroundColor:  Color.fromARGB(255, 243, 221, 240),
+        backgroundColor: Colors.white,
+          // backgroundColor:  Color.fromARGB(255, 243, 221, 240),
 
           items:  [
             BottomNavigationBarItem(
