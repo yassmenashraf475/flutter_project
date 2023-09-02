@@ -1,4 +1,6 @@
 // ignore_for_file: unused_local_variable
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 class FireBaseHelper{
@@ -44,9 +46,17 @@ try{
     return user.user;
   }
    } on FirebaseAuthException catch(e){
+   if(e.code=='user-not-found'){
+      return "user not found";
+    }else if(e.code=='wrong-password'){
+      return "wrong password";
+    }
     return e.message;
    }
-   
+   User? use=FirebaseAuth.instance.currentUser;
+   if(use!.emailVerified==false){
+await use.sendEmailVerification();
+   }
   }
 
 
