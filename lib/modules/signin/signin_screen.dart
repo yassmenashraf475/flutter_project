@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_project/layout/home_layout.dart';
 import 'package:flutter_project/modules/details/details_screen.dart';
 import 'package:flutter_project/modules/signup/signup_screen.dart';
 class signin extends StatefulWidget {
@@ -125,7 +126,7 @@ class login extends State<signin> {
                     ElevatedButton(
                       onPressed: () {
                        if(formkey.currentState!.validate()){
-                  Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => DetailsScreen(),) );
+                  Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => HomeLayout(),) );
                 }
                       },
                       style: ElevatedButton.styleFrom(
