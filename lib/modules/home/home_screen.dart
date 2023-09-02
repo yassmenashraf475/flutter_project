@@ -301,7 +301,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                                             ),
                                             const SizedBox(height: 5), // Add spacing between photo and text
                                             Padding(
-                                              padding: EdgeInsets.only(left: 20.0),
+                                              padding: EdgeInsets.only(left: 10.0),
                                               child: Text(
                                                 maxLines: 1,
                                                 overflow: TextOverflow.ellipsis,
@@ -350,7 +350,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                                             ),
                                            // const SizedBox(height: 5),
                                             Padding(
-                                              padding: const EdgeInsets.only(left: 55.0),
+                                              padding: const EdgeInsets.only(left: 40.0),
                                               child: GestureDetector(
                                                 onTap: () {
                                                   // Navigate to another page here
@@ -367,7 +367,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                                                   "Show More Details",
                                                   textAlign: TextAlign.center,
                                                   style: TextStyle(
-                                                    fontSize: 10,
+                                                    fontSize: 13,
                                                     fontWeight: FontWeight.w500,
                                                     color: Color.fromRGBO(156, 62, 243, 100),
                                                     decoration: TextDecoration.underline,
