@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_project/layout/home_layout.dart';
@@ -11,7 +12,13 @@ void main() async {
 await Firebase.initializeApp();
   runApp(const MyApp());
 }
-
+Widget start (){
+  if(FirebaseAuth.instance.currentUser!=null){
+    return MyHomePage();
+  }else{
+    return splash();
+  }
+}
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
