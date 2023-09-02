@@ -18,6 +18,8 @@ class FireBaseHelper{
     return e.message;
    }
   }
+
+  //sign in with google
 Future<UserCredential> signInWithGoogle() async {
   // Trigger the authentication flow
   final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();

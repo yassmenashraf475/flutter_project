@@ -16,7 +16,7 @@ await Firebase.initializeApp();
 }
 Widget start (){
   if(FirebaseAuth.instance.currentUser!=null){
-    return MyHomePage();
+    return HomeLayout();
   }else{
     return splash();
   }

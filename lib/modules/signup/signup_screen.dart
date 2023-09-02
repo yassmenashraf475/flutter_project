@@ -86,46 +86,46 @@ class SignUp extends State<signup> {
                       ],
                     ),
                   ),
-                  SizedBox(height: hei / 40),
-                  Container(
-                    width: 300,
-                    decoration: BoxDecoration(
-                      color: Color(0xFFD6C8E1),
-                      borderRadius: BorderRadius.circular(25.0),
-                    ),
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Icon(
-                            Icons.phone,
-                            color: Color(0xFF73499B),
-                          ),
-                        ),
-                        Expanded(
-                          child: TextFormField(
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return "Please enter phone number";
-                              } else if (value.length < 8 ||
-                                  value.length > 11) {
-                                return "Please enter valid phone number";
-                              } else {
-                                return null;
-                              }
-                            },
-                            controller: phoneNumberController,
-                            keyboardType: TextInputType.phone,
-                            decoration: InputDecoration(
-                              labelText: 'Phone',
-                              labelStyle: TextStyle(color: Color(0xFF73499B)),
-                              border: InputBorder.none,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                  // SizedBox(height: hei / 40),
+                  // Container(
+                  //   width: 300,
+                  //   decoration: BoxDecoration(
+                  //     color: Color(0xFFD6C8E1),
+                  //     borderRadius: BorderRadius.circular(25.0),
+                  //   ),
+                  //   child: Row(
+                  //     children: [
+                  //       Padding(
+                  //         padding: const EdgeInsets.all(8.0),
+                  //         child: Icon(
+                  //           Icons.phone,
+                  //           color: Color(0xFF73499B),
+                  //         ),
+                  //       ),
+                  //       Expanded(
+                  //         child: TextFormField(
+                  //           validator: (value) {
+                  //             if (value!.isEmpty) {
+                  //               return "Please enter phone number";
+                  //             } else if (value.length < 8 ||
+                  //                 value.length > 11) {
+                  //               return "Please enter valid phone number";
+                  //             } else {
+                  //               return null;
+                  //             }
+                  //           },
+                  //           controller: phoneNumberController,
+                  //           keyboardType: TextInputType.phone,
+                  //           decoration: InputDecoration(
+                  //             labelText: 'Phone',
+                  //             labelStyle: TextStyle(color: Color(0xFF73499B)),
+                  //             border: InputBorder.none,
+                  //           ),
+                  //         ),
+                  //       ),
+                  //     ],
+                  //   ),
+                  // ),
                   SizedBox(height: hei / 40),
                   Container(
                     width: 300,

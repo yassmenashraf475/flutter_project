@@ -28,9 +28,9 @@ class login extends State<signin> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                      SizedBox(height: hei/10),
+                      SizedBox(height: hei/40),
                     Text(
-                      "Login",
+                      "Sign In",
                       style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold, color: Color(0xFF73499B)),
                     ),
                     SizedBox(height: hei/20),
@@ -138,11 +138,20 @@ class login extends State<signin> {
                         minimumSize: Size(300, 50),
                       ),
                       child: Text(
-                        'Login',
+                        'Sign In',
                         style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
                       ),
                     ),
                     SizedBox(height: hei/40),
+                    Text("Sign In with",style: TextStyle(color: Color(0xFF73499B),fontWeight: FontWeight.bold,fontSize: 20))
+                    ,
+                    SizedBox(height: hei/40),
+                    Row(mainAxisAlignment: MainAxisAlignment.center,children: [
+                      FloatingActionButton(onPressed: () {
+                      FireBaseHelper().signInWithGoogle();
+                        },child: CircleAvatar(backgroundColor: Colors.white,backgroundImage:AssetImage("assets/images/googleicon.png"),radius: 30,))
+                    ]),
+                    SizedBox(height: hei/500),
                      Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
