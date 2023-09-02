@@ -54,56 +54,61 @@ class _DetailsScreenState extends State<DetailsScreen> {
             color: Color(0xFF73499B),
           ),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            //mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(
-                Icons.shopping_cart_outlined,
-                color: Colors.white,
-              ),
-              SizedBox(
-                width:5,
-              ),
-              RichText(
-                text: TextSpan(
-                  text: 'Add To Card | \$${widget.product.price}',
-                  style: TextStyle(
-                      fontFamily: "fonttry",
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold
-                  ).copyWith(color: Colors.white),
-                ),
-              ),
-              SizedBox(
-                width: 5,
-              ),
-              Container(
-                padding: EdgeInsets.all(4),
-                decoration: BoxDecoration(
-                    color: Color(0xFFD6C8E1),
-                    borderRadius: BorderRadius.circular(15)
-                ),
+              GestureDetector(
+                onTap: () {},
                 child: Row(
                   children: [
-                    Text(
-                      '${widget.product.discountPercentage}%',
-                      maxLines: 2,
-                      style: TextStyle(
-                        fontSize: 13,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.red, // You can customize the color
-                      ),
+                    Icon(
+                      Icons.shopping_cart_outlined,
+                      color: Colors.white,
                     ),
-                    Text(
-                      'OFF',
-                      maxLines: 2,
-                      style: TextStyle(
-                        fontSize: 13,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.red, // You can customize the color
+                    SizedBox(
+                      width: 5,
+                    ),
+                    RichText(
+                      text: TextSpan(
+                        text: 'Add To Card | ',
+                        style: TextStyle(
+                          fontFamily: "fonttry",
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ).copyWith(color: Colors.white),
                       ),
                     ),
                   ],
                 ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child: Column(
+                  children: [
+                    RichText(
+                      text: TextSpan(
+                        text: 'Total Price:',
+                        style: TextStyle(
+                            fontFamily: "fonttry",
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold
+                        ).copyWith(color: Colors.white),
+                      ),
+                    ),
+                    RichText(
+                      text: TextSpan(
+                        text: '\$${widget.product.price}',
+                        style: TextStyle(
+                            fontFamily: "fonttry",
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold
+                        ).copyWith(color: Colors.white),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                width: 5,
               ),
             ],
           ),
@@ -271,13 +276,45 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                   ).copyWith(color: Colors.grey)
                               )
                           ),
-                          // Text(
-                          //   '3.0',
-                          //   style: TextStyle(
-                          //     fontSize: 13,
-                          //   ),
-                          // ),
+                          SizedBox(
+                            width: 25,
+                          ),
                         ],
+                      ),
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: Container(
+                          height: 40,
+                          padding: EdgeInsets.all(4),
+                          decoration: BoxDecoration(
+                              color: Color(0xFFD6C8E1),
+                              borderRadius: BorderRadius.circular(15)
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                '${widget.product.discountPercentage}%',
+                                maxLines: 2,
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w900,
+                                  color: Colors.red, // You can customize the color
+                                ),
+                              ),
+                              Text(
+                                'OFF',
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w900,
+                                  color: Colors.red, // You can customize the color
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
                       SizedBox(
                         height: 15,
