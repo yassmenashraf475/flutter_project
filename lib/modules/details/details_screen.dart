@@ -3,7 +3,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_project/data/sqldb.dart';
 import 'package:flutter_project/models/product.dart';
-import 'package:flutter_project/modules/favourite/favourite_screen.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 class DetailsScreen extends StatefulWidget {
   const DetailsScreen({super.key,required this.product});
@@ -15,7 +14,7 @@ class DetailsScreen extends StatefulWidget {
 }
 
 class _DetailsScreenState extends State<DetailsScreen> {
-  late final List<Product> favoriteProducts;
+  //late final List<Product> favoriteProducts;
   Sqflite sqlDb = Sqflite();
 
   // Future<void> _toggleFavorite(Product product) async {
@@ -52,12 +51,44 @@ class _DetailsScreenState extends State<DetailsScreen> {
   late double fractionalPart;
 
   bool _isFavorite = false;
+  List productsList = [];
+  bool isLoading = true;
+  // myReadData() async {
+  //   // Shortcut
+  //   List<Map> response = await sqlDb.myRead('product');
+  //   productsList.addAll(response);
+  //   isLoading = false;
+  //   setState(() {});
+  // }
+  // Updated myReadData function
+  myReadData() async {
+    // Shortcut
+    List<Map> response = await sqlDb.myRead('product');
+    productsList.addAll(response);
+    isLoading = false;
+    setState(() {});
+    // Call checkFavoriteStatus with the favoriteProducts list
+    checkFavoriteStatus(productsList);
+  }
+
+// Updated checkFavoriteStatus function
+  Future<void> checkFavoriteStatus(List favoriteProducts) async {
+    // Check if the product with the same ID exists in the favorite table
+    bool isFavorite = favoriteProducts.any((favorite) =>
+    favorite['id'] == widget.product.id && favorite['isColored'] == 1);
+
+    setState(() {
+      _isFavorite = isFavorite;
+    });
+  }
+
 
   final CarouselController carouselController=CarouselController();
   int currentIndex=0;
 
   @override
   void initState() {
+    myReadData();
     super.initState();
     if (widget.product.rating is int) {
       initialRating = widget.product.rating.toDouble();
@@ -68,6 +99,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
     fractionalPart = initialRating - fullStars; // Get the fractional part
 
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -145,7 +177,9 @@ class _DetailsScreenState extends State<DetailsScreen> {
             ],
           ),
         ),
-        body:SafeArea(
+        body: isLoading
+            ? const Center(child: CircularProgressIndicator())
+            :SafeArea(
           child: SingleChildScrollView(
             child: Column(
               children: [
@@ -233,23 +267,30 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           ),
                           IconButton(
                             icon: Icon(
-                              _isFavorite ? Icons.favorite : Icons.favorite_border,
+                              Icons.favorite,
                               color: _isFavorite ? Colors.red : null,
                             ),
                             onPressed: ()async{
-                              await sqlDb.myInsert('product',{
-                                "id":'${widget.product.id}',
-                                "title":'${widget.product.title}',
-                                "thumbnail":'${widget.product.thumbnail}',
-                                "rating":'${widget.product.rating}',
-                                "price":'${widget.product.price}',
-                              });
-                              // _toggleFavorite(widget.product);
-                              // FavoritesScreen(favoriteProducts: favoriteProducts,);
                               setState(() {
                                 _isFavorite = !_isFavorite;
                               }
                               );
+                              if (_isFavorite) {
+                                await sqlDb.myInsert('product', {
+                                  "id": '${widget.product.id}',
+                                  "title": '${widget.product.title}',
+                                  "thumbnail": '${widget.product.thumbnail}',
+                                  "rating": '${widget.product.rating}',
+                                  "price": '${widget.product.price}',
+                                  "isColored": 1,
+                                });
+                              } else {
+                                // Remove the product from favorites
+                                // You need to implement this part based on your database logic
+                                await sqlDb.myDelete('product', 'id = ${widget.product.id}');
+                              }
+                              // _toggleFavorite(widget.product);
+                              // FavoritesScreen(favoriteProducts: favoriteProducts,);
                             },
                           )
                         ],
