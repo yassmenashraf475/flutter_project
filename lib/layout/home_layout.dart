@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_project/models/product.dart';
 import 'package:flutter_project/modules/account/account_screen.dart';
 import 'package:flutter_project/modules/favourite/favourite_screen.dart';
 import 'package:flutter_project/modules/home/home_screen.dart';
@@ -13,10 +14,10 @@ class HomeLayout extends StatefulWidget {
 class _HomeLayoutState extends State<HomeLayout> {
 
   int currentIndex = 0;
-
+  late  List<Product> favoriteProducts;
   List<Widget> screens=[
     MyHomePage(),
-    FavScreen(),
+    FavoritesScreen(),
     AccountScreen(),
   ];
   @override

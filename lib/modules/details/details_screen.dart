@@ -1,7 +1,9 @@
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_project/data/sqldb.dart';
 import 'package:flutter_project/models/product.dart';
+import 'package:flutter_project/modules/favourite/favourite_screen.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 class DetailsScreen extends StatefulWidget {
   const DetailsScreen({super.key,required this.product});
@@ -13,6 +15,36 @@ class DetailsScreen extends StatefulWidget {
 }
 
 class _DetailsScreenState extends State<DetailsScreen> {
+  late final List<Product> favoriteProducts;
+  Sqflite sqlDb = Sqflite();
+
+  // Future<void> _toggleFavorite(Product product) async {
+  //   final exists = await dbHelper.readData(
+  //     'SELECT * FROM favourits WHERE title = ?',
+  //     [product.title],
+  //   );
+  //
+  //   if (exists.isNotEmpty) {
+  //     final deletedRows = await dbHelper.deleteData(
+  //       'DELETE FROM favourits WHERE title = ?',
+  //       [product.title],
+  //     );
+  //     if (deletedRows > 0) {
+  //       setState(() {
+  //         favoriteProducts.removeWhere((item) => item.title == product.title);
+  //       });
+  //     }
+  //   } else {
+  //     final insertedId = await dbHelper.insertData(
+  //       'INSERT INTO favourits (title, image, price) VALUES (?, ?, ?)',
+  //       [product.title, product.thumbnail, product.price],
+  //     );
+  //     setState(() {
+  //       product.id = insertedId;
+  //       favoriteProducts.add(product);
+  //     });
+  //   }
+  // }
 
  // _DetailsScreenState({required this.product_id})
   double initialRating=0.0;
@@ -44,7 +76,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
           padding: EdgeInsets.symmetric(
               horizontal: 8
           ),
-          height: 60.0,
+          height: 65.0,
           width: double.infinity,
           margin: EdgeInsets.symmetric(
               horizontal: 50
@@ -204,10 +236,20 @@ class _DetailsScreenState extends State<DetailsScreen> {
                               _isFavorite ? Icons.favorite : Icons.favorite_border,
                               color: _isFavorite ? Colors.red : null,
                             ),
-                            onPressed: (){
+                            onPressed: ()async{
+                              await sqlDb.myInsert('product',{
+                                "id":'${widget.product.id}',
+                                "title":'${widget.product.title}',
+                                "thumbnail":'${widget.product.thumbnail}',
+                                "rating":'${widget.product.rating}',
+                                "price":'${widget.product.price}',
+                              });
+                              // _toggleFavorite(widget.product);
+                              // FavoritesScreen(favoriteProducts: favoriteProducts,);
                               setState(() {
                                 _isFavorite = !_isFavorite;
-                              });
+                              }
+                              );
                             },
                           )
                         ],
