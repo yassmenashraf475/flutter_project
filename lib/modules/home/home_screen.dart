@@ -29,6 +29,8 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
     'groceries',
     'home-decoration',
   ];
+
+
   List<Product> products = [];
   @override
   void initState() {
@@ -263,7 +265,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                                 //   ),
                                 // ),
                                 Container(
-                                  height: 250,
+                                  height: 230,
                                   width: 350,
                                   //color: Color.fromARGB(255, 238, 225, 220),
                                   child: ListView.separated(
@@ -328,29 +330,37 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                                                 ),
                                                 const SizedBox(width: 1),
                                                 // Add spacing between photo and text
-                                                Text(
-                                                  "${product.rating}",
-                                                  style: TextStyle(
-                                                    fontWeight: FontWeight.normal,
-                                                    color: Colors.grey,
+                                                Row(
+                                                  children: [
+                                                    Padding(
+                                                      padding: const EdgeInsets.only(right: 25.0),
+                                                      child: Text(
+                                                        "${product.rating}",
+                                                        style: TextStyle(
+                                                          fontWeight: FontWeight.normal,
+                                                          color: Colors.grey,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                SizedBox(height: 5),
+                                                Expanded(
+                                                  child: Text(
+                                                    "\$${product.price}",
+                                                    style: TextStyle(
+                                                      fontWeight: FontWeight.w400,
+                                                      fontSize: 20,
+                                                      color: Color.fromRGBO(30, 7, 72, 10),
+                                                    ),
                                                   ),
                                                 ),
                                               ],
                                             ),
-                                            SizedBox(height: 5),
-                                            Expanded(
-                                              child: Text(
-                                                "Price: \$${product.price}",
-                                                style: TextStyle(
-                                                  fontWeight: FontWeight.w400,
-                                                  fontSize: 20,
-                                                  color: Color.fromRGBO(30, 7, 72, 10),
-                                                ),
-                                              ),
-                                            ),
-                                           // const SizedBox(height: 5),
+
+                                            const SizedBox(height: 15),
                                             Padding(
-                                              padding: const EdgeInsets.only(left: 40.0),
+                                              padding: const EdgeInsets.only(left: 15.0,bottom: 10),
                                               child: GestureDetector(
                                                 onTap: () {
                                                   // Navigate to another page here
@@ -523,31 +533,34 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
     ;
   }
 
-
-
   Widget _listViewCategoryPhoto() {
-    return  Padding(
-      padding: const EdgeInsets.only(left: 8.0,right: 10),
+    // List of image assets corresponding to the 6 categories
+    List<String> imageAssets = [
+      "assets/images/img/ipone.jpg",
+      "assets/images/img/lab.jpg",
+      "assets/images/img/freg.jpg",
+      "assets/images/img/make-up-spa-treatment-concept.jpg",
+      "assets/images/img/food.jpg",
+      "assets/images/img/homeDecoration.jpg",
+    ];
+
+    return Padding(
+      padding: const EdgeInsets.only(left: 8.0, right: 10),
       child: Container(
         height: 100,
         width: 350,
-        //color: Color.fromARGB(255, 238, 225, 220),
         child: ListView.separated(
           itemCount: names.length,
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
+            // Ensure the index is within the range of imageAssets
+            int imageIndex = index % imageAssets.length;
+
             return Column(
               children: [
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  height: 60,
-                  width: 60,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Image.asset("assets/images/img/mobile.png"),
-                  ),
+                CircleAvatar(
+                  radius: 30, // Adjust the radius as needed
+                  backgroundImage: AssetImage(imageAssets[imageIndex]),
                 ),
                 const SizedBox(height: 5),
                 CustomText(text: names[index])
@@ -562,6 +575,49 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
       ),
     );
   }
+
+
+  // Widget _listViewCategoryPhoto() {
+  //   return  Padding(
+  //     padding: const EdgeInsets.only(left: 8.0,right: 10),
+  //     child: Container(
+  //       height: 100,
+  //       width: 350,
+  //       //color: Color.fromARGB(255, 238, 225, 220),
+  //       child: ListView.separated(
+  //         itemCount: names.length,
+  //         scrollDirection: Axis.horizontal,
+  //         itemBuilder: (context, index) {
+  //           return Column(
+  //             children: [
+  //               Container(
+  //                 decoration: BoxDecoration(
+  //                   borderRadius: BorderRadius.circular(15),
+  //                 ),
+  //                 height: 60,
+  //                 width: 60,
+  //                 child: Padding(
+  //                   padding: const EdgeInsets.all(8.0),
+  //                   child: Image.asset("assets/images/img/mobile.png"),
+  //                 ),
+  //               ),
+  //               const SizedBox(height: 5),
+  //               CustomText(text: names[index])
+  //             ],
+  //           );
+  //         },
+  //         separatorBuilder: (BuildContext context, int index) =>
+  //         const SizedBox(
+  //           width: 20,
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
+
+
+
+
   // Widget _listViewProduct() {
   //   print("number of product ${products.length}");
   //   return
