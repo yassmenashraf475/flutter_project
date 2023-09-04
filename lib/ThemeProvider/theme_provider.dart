@@ -31,7 +31,7 @@ class MyTheme{
     scaffoldBackgroundColor: Colors.grey.shade200,
     colorScheme: const ColorScheme.light(),
     appBarTheme: AppBarTheme(
-      foregroundColor: Colors.black,
+      foregroundColor: Colors.white,
     ),
     textTheme: TextTheme(
       headline1: TextStyle(color: Colors.white), // Example: headline1 text color

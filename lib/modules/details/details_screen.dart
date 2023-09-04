@@ -231,7 +231,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           ),
                           IconButton(
                             icon: Icon(
-                              Icons.favorite,
+                              Icons.favorite_border_sharp,
                               color: _isFavorite ? Colors.red : null,
                             ),
                             onPressed: ()async{
