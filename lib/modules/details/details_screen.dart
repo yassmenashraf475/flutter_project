@@ -272,7 +272,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                             ),
                             child: Text(
                               '${widget.product.stock} items left',
-                               style:Theme.of(context).textTheme.bodyText2,
+                               style:Theme.of(context).textTheme.bodyText1,
                               //TextStyle(
                               //     fontSize: 13,
                               //     fontWeight: FontWeight.w400

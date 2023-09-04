@@ -16,7 +16,6 @@ class MyTheme{
     appBarTheme: AppBarTheme(
       foregroundColor: Colors.black,
     ),
-    fontFamily: "Acme",
     textTheme: TextTheme(
       headline1: TextStyle(color: Colors.black), // Example: headline1 text color
       bodyText1: TextStyle(color: Colors.black), // Example: bodyText1 text color
@@ -31,7 +30,6 @@ class MyTheme{
   static final lightTheme = ThemeData(
     scaffoldBackgroundColor: Colors.grey.shade200,
     colorScheme: const ColorScheme.light(),
-    fontFamily: "Acme",
     appBarTheme: AppBarTheme(
       foregroundColor: Colors.black,
     ),
