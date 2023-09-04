@@ -247,8 +247,8 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                                             "Show More Details",
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
-                                              fontSize: 13,
-                                              fontWeight: FontWeight.w500,
+                                              fontSize: 11,
+                                              fontWeight: FontWeight.w600,
                                               color: Color.fromRGBO(156, 62, 243, 100),
                                               decoration: TextDecoration.underline,
                                             ),
