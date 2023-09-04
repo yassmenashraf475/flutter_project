@@ -10,7 +10,7 @@ class CustomText extends StatelessWidget {
     return Text(
       text,
       style: const TextStyle(
-        fontSize: 14,
+        fontSize: 17,
         color: Color.fromARGB(155, 135, 92, 252),
       ),
     );

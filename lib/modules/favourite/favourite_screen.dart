@@ -11,41 +11,10 @@ class FavoritesScreen extends StatefulWidget {
 }
 
 class _FavoritesScreenState extends State<FavoritesScreen> {
-  // final SqlDb dbHelper = SqlDb();
-  //
-  // Future<void> _toggleFavorite(Product product) async {
-  //   final exists = await dbHelper.readData(
-  //     'SELECT * FROM favourits WHERE title = ?',
-  //     [product.title],
-  //   );
-  //
-  //   if (exists.isNotEmpty) {
-  //     final deletedRows = await dbHelper.deleteData(
-  //       'DELETE FROM favourits WHERE title = ?',
-  //       [product.title],
-  //     );
-  //     if (deletedRows > 0) {
-  //       setState(() {
-  //         widget.favoriteProducts.removeWhere((item) => item.title == product.title);
-  //       });
-  //     }
-  //   } else {
-  //     final insertedId = await dbHelper.insertData(
-  //       'INSERT INTO favourits (title, image, price) VALUES (?, ?, ?)',
-  //       [product.title, product.thumbnail, product.price],
-  //     );
-  //     setState(() {
-  //       product.id = insertedId;
-  //       widget.favoriteProducts.add(product);
-  //     });
-  //   }
-  // }
   Sqflite sqlDb = Sqflite();
   List productsList = [];
   bool isLoading = true;
   myReadData() async {
-    //List<Map> response = await sqlDb.readData('SELECT * FROM note');
-    // Shortcut
     List<Map<String, dynamic>>response = await sqlDb.myRead('product');
     productsList.addAll(response);
     isLoading = false;
@@ -71,7 +40,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[200],
+      backgroundColor: Colors.transparent,
       appBar: AppBar(
         leading:  IconButton(
           onPressed: () {
@@ -96,7 +65,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
           :GridView.builder(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2, // Number of items in each row
-          childAspectRatio: 0.7, // Adjust this aspect ratio as needed
+          childAspectRatio: 0.8, // Adjust this aspect ratio as needed
         ),
         itemCount: productsList.length,
         itemBuilder: (context, index) {
@@ -177,53 +146,30 @@ Widget buildProduct(Map product,Sqflite sqlDb,VoidCallback deleteItem,BuildConte
                 color: Colors.grey,
               ),
             ),
-          ],
-        ),
-        SizedBox(height: 5),
-        Expanded(
-          child: Text(
-            "Price: \$${product['price']}",
-            style: TextStyle(
-              fontWeight: FontWeight.w400,
-              fontSize: 20,
-              color: Color.fromRGBO(30, 7, 72, 10),
-            ),
-          ),
-        ),
-        Row(
-          children: [
-            IconButton(
-              onPressed: deleteItem,
-              icon: const Icon(Icons.delete,
-              color: Color.fromARGB(
-                  255, 89, 16, 138),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 10.0),
-              child: GestureDetector(
-                onTap: () {
-                  // Navigator.push(context,
-                  //     MaterialPageRoute(
-                  //         builder: (context) => DetailsScreen(
-                  //           product: product,
-                  //         ),
-                  //       ),
-                  // );
-                },
-                child: const Text(
-                  "Show More Details",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w500,
-                    color: Color.fromRGBO(156, 62, 243, 100),
-                    decoration: TextDecoration.underline,
-                  ),
+            SizedBox(width: 30),
+            Expanded(
+              child: Text(
+                "\$${product['price']}",
+                style: TextStyle(
+                  fontWeight: FontWeight.w400,
+                  fontSize: 20,
+                  color: Color.fromRGBO(30, 7, 72, 10),
                 ),
               ),
             ),
           ],
+
+        ),
+
+        Align(
+          alignment: Alignment.center,
+          child: IconButton(
+            onPressed: deleteItem,
+            icon: const Icon(Icons.delete,
+            color: Color.fromARGB(
+                255, 89, 16, 138),
+            ),
+          ),
         ),
       ],
     ),
