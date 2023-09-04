@@ -40,7 +40,7 @@ class _welcomepage extends State<welcome> {
                       'assets/images/NEW11.json', // Replace with your Lottie animation asset
                       width: 500,
                       height: 400,
-                      repeat: false),
+                      repeat: true),
                   SizedBox(height: hei / 90),
                   //animation
                   ElevatedButton(
