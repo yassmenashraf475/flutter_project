@@ -66,7 +66,7 @@ class _AccountScreenState extends State<AccountScreen> {
                           onPressed: ()async{
                             Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>welcome()));
                             await FireBaseHelper().signOut();
-                            FireBaseHelper().signOut();
+                            FireBaseHelper().SignOutWithGoogle();
                             },
                           icon: Icon(
                             Icons.logout,
