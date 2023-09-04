@@ -17,35 +17,6 @@ class _DetailsScreenState extends State<DetailsScreen> {
   //late final List<Product> favoriteProducts;
   Sqflite sqlDb = Sqflite();
 
-  // Future<void> _toggleFavorite(Product product) async {
-  //   final exists = await dbHelper.readData(
-  //     'SELECT * FROM favourits WHERE title = ?',
-  //     [product.title],
-  //   );
-  //
-  //   if (exists.isNotEmpty) {
-  //     final deletedRows = await dbHelper.deleteData(
-  //       'DELETE FROM favourits WHERE title = ?',
-  //       [product.title],
-  //     );
-  //     if (deletedRows > 0) {
-  //       setState(() {
-  //         favoriteProducts.removeWhere((item) => item.title == product.title);
-  //       });
-  //     }
-  //   } else {
-  //     final insertedId = await dbHelper.insertData(
-  //       'INSERT INTO favourits (title, image, price) VALUES (?, ?, ?)',
-  //       [product.title, product.thumbnail, product.price],
-  //     );
-  //     setState(() {
-  //       product.id = insertedId;
-  //       favoriteProducts.add(product);
-  //     });
-  //   }
-  // }
-
- // _DetailsScreenState({required this.product_id})
   double initialRating=0.0;
   late int fullStars;
   late double fractionalPart;
@@ -53,14 +24,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
   bool _isFavorite = false;
   List productsList = [];
   bool isLoading = true;
-  // myReadData() async {
-  //   // Shortcut
-  //   List<Map> response = await sqlDb.myRead('product');
-  //   productsList.addAll(response);
-  //   isLoading = false;
-  //   setState(() {});
-  // }
-  // Updated myReadData function
+
   myReadData() async {
     // Shortcut
     List<Map> response = await sqlDb.myRead('product');
@@ -245,7 +209,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                 ),
                 Container(
                   height: 400,
-                  color: Colors.grey[200],
+                  color: Colors.transparent,
                   padding: EdgeInsets.symmetric(
                       horizontal: 10,
                       vertical: 10
@@ -308,10 +272,11 @@ class _DetailsScreenState extends State<DetailsScreen> {
                             ),
                             child: Text(
                               '${widget.product.stock} items left',
-                              style: TextStyle(
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w400
-                              ),
+                               style:Theme.of(context).textTheme.bodyText2,
+                              //TextStyle(
+                              //     fontSize: 13,
+                              //     fontWeight: FontWeight.w400
+                              // ),
                             ),
                           ),
                           SizedBox(
@@ -436,16 +401,13 @@ class _DetailsScreenState extends State<DetailsScreen> {
                             'Brand: ',
                             style: TextStyle(
                                 fontFamily: "fonttry",
-                                fontSize: 15,
+                                fontSize: 17,
                                 fontWeight: FontWeight.w500
                             ),
                           ),
                           Text(
                             '${widget.product.brand}',
-                            style: TextStyle(
-                                fontSize: 13,
-                                color: Colors.grey[900]
-                            ),
+                            style: Theme.of(context).textTheme.bodyText2,
                           ),
                         ],
                       ),
@@ -458,16 +420,13 @@ class _DetailsScreenState extends State<DetailsScreen> {
                             'Category:',
                             style: TextStyle(
                                 fontFamily: "fonttry",
-                                fontSize: 15,
+                                fontSize: 17,
                                 fontWeight: FontWeight.w500
                             ),
                           ),
                           Text(
                             ' ${widget.product.category}',
-                            style: TextStyle(
-                                fontSize: 13,
-                                color: Colors.grey[900]
-                            ),
+                            style: Theme.of(context).textTheme.bodyText2,
                           ),
                         ],
                       ),
